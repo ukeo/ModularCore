@@ -1,6 +1,7 @@
 package eu.imposdev.modularcore.module;
 
 import eu.imposdev.modularcore.ModularCore;
+import eu.imposdev.modularcore.language.LanguageHandler;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,7 @@ public abstract class Module {
     private CommandMap commandMap;
     private File dataFolder, configFile;
     private FileConfiguration config;
+    private LanguageHandler languageHandler;
     private Logger logger;
 
     public Module() {
@@ -44,9 +46,8 @@ public abstract class Module {
             e.printStackTrace();
         }
         this.logger = Logger.getLogger(getName());
+        this.languageHandler = new LanguageHandler(this);
     }
-
-    protected abstract String getName();
 
     /**
      * setup the config for this module
@@ -106,34 +107,13 @@ public abstract class Module {
         return null;
     }
 
-    /**
-     *
-     * Register a command
-     *
-     * @param command Command you want to register
-     */
-
     protected void registerCommand(Command command) {
         commandMap.register(command.getName(), command);
     }
 
-    /**
-     *
-     * Register a listener
-     *
-     * @param listener Listener you want to register
-     */
-
     protected void registerListener(Listener listener) {
         Bukkit.getPluginManager().registerEvents(listener, ModularCore.getInstance());
     }
-
-    /**
-     *
-     * Register Listener by path
-     *
-     * @param path path to the listener
-     */
 
     public void registerListener(String path) {
         try {
