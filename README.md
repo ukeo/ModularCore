@@ -14,7 +14,7 @@ The core is built with Java 16
 
 ## Installation
 
-Donwload the plugin [HERE](https://imposdev.eu/repo/eu/imposdev/modularcore/1.0.0/modularcore-1.0.1.jar) and put it into your plugins folder.
+Donwload the plugin [HERE](https://imposdev.eu/repo/eu/imposdev/modularcore/1.0.0/modularcore-1.0.2.jar) and put it into your plugins folder.
 Restart your server.
 Open up your plugins folder and you will find a ModularCore folder with a subfolder called modules. There you have to put in your modules.
 
