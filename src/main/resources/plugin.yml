@@ -1,0 +1,8 @@
+name: ModularCore
+version: ${project.version}
+main: eu.imposdev.modularcore.ModularCore
+api-version: 1.17
+prefix: MCoreLib
+authors: [ Espen ]
+description: Advanced coding utility
+website: https://imposdev.eu
