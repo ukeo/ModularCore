@@ -3,6 +3,7 @@ package eu.imposdev.modularcore;
 import eu.imposdev.modularcore.commands.ModuleCommand;
 import eu.imposdev.modularcore.module.Module;
 import eu.imposdev.modularcore.module.ModuleLoader;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
@@ -16,6 +17,8 @@ public final class ModularCore extends JavaPlugin {
 
     private ModuleLoader moduleLoader;
     private CommandMap commandMap;
+
+    protected final int pluginId = 12685;
 
     @Override
     public void onLoad() {
@@ -37,6 +40,7 @@ public final class ModularCore extends JavaPlugin {
             exception.printStackTrace();
         }
         registerCommand(new ModuleCommand());
+        loadMetrics();
     }
 
     @Override
@@ -44,6 +48,10 @@ public final class ModularCore extends JavaPlugin {
         for ( Module module : moduleLoader.getLoadedModules() ) {
             module.onDisable();
         }
+    }
+
+    protected void loadMetrics() {
+        Metrics metrics = new Metrics(this, pluginId);
     }
 
     public static ModularCore getInstance() {
