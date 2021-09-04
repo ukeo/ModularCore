@@ -154,7 +154,7 @@ main: eu.imposdev.coretest.TestModule
 dependencies: []
 ```
 
-You now can compile your module and put it into /plugins/ModualrCore/modules/ .
+You now can compile your module and put it into /plugins/ModularCore/modules/ .
 
 ## JavaDocs
 
