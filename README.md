@@ -144,7 +144,7 @@ public class ModuleCommand extends Command {
 }
 ```
 
-To let the Core know how to handle your module you have to create a module.yml instaed of a plugin.yml.
+To let the Core know how to handle your module you have to create a module.yml instead of a plugin.yml.
 The module.yml should look lie this:
 ```yaml
 name: TestModule
