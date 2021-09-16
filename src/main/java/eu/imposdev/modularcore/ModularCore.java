@@ -3,6 +3,7 @@ package eu.imposdev.modularcore;
 import eu.imposdev.modularcore.commands.ModuleCommand;
 import eu.imposdev.modularcore.module.Module;
 import eu.imposdev.modularcore.module.ModuleLoader;
+import eu.imposdev.modularcore.util.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -17,6 +18,9 @@ public final class ModularCore extends JavaPlugin {
 
     private ModuleLoader moduleLoader;
     private CommandMap commandMap;
+    private UpdateChecker updateChecker;
+
+    private String version;
 
     protected final int pluginId = 12685;
 
@@ -29,6 +33,14 @@ public final class ModularCore extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getLogger().info("Starting module loader...");
+        updateChecker = new UpdateChecker();
+        updateChecker.check();
+        if (updateChecker.isAvailable()) {
+            getLogger().warning("There is an update available! Gop and check out the spigot page! https://www.spigotmc.org/resources/modularcore-advanced-coding-utility-module-system.95935/");
+        } else {
+            getLogger().info("You are running the latest version of ModularCore!");
+        }
+        version = this.getDescription().getVersion();
         moduleLoader = new ModuleLoader(getDataFolder().getAbsolutePath() + "/modules/");
         final Field bukkitCommandMap;
         try {
@@ -54,6 +66,10 @@ public final class ModularCore extends JavaPlugin {
         Metrics metrics = new Metrics(this, pluginId);
     }
 
+    protected void registerCommand( Command command ) {
+        commandMap.register( command.getName(), command );
+    }
+
     public static ModularCore getInstance() {
         return instance;
     }
@@ -66,7 +82,7 @@ public final class ModularCore extends JavaPlugin {
         return commandMap;
     }
 
-    protected void registerCommand( Command command ) {
-        commandMap.register( command.getName(), command );
+    public String getVersion() {
+        return version;
     }
 }
