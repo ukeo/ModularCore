@@ -31,7 +31,7 @@ Open up your plugins folder and you will find a ModularCore folder with a subfol
 <dependency>
     <groupId>eu.imposdev</groupId>
     <artifactId>modularcore</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
