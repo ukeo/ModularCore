@@ -32,6 +32,7 @@ public final class ModularCore extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
+        version = this.getDescription().getVersion();
         getLogger().info("Starting module loader...");
         updateChecker = new UpdateChecker();
         updateChecker.check();
@@ -40,7 +41,6 @@ public final class ModularCore extends JavaPlugin {
         } else {
             getLogger().info("You are running the latest version of ModularCore!");
         }
-        version = this.getDescription().getVersion();
         moduleLoader = new ModuleLoader(getDataFolder().getAbsolutePath() + "/modules/");
         final Field bukkitCommandMap;
         try {
